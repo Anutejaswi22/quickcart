@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { ShoppingCart, Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,15 +19,17 @@ export default function GroceryQRCodeLanding() {
       {/* Header */}
       <header className="sticky top-0 z-20 backdrop-blur bg-white/70 border-b">
         <div className="mx-auto max-w-7xl px-4 h-14 flex items-center gap-3">
-          <Button variant="ghost" size="icon" className="sm:hidden">
+          <Button variant="ghost" size="icon" className="sm:hidden" aria-label="Open menu" type="button">
             <Menu className="h-5 w-5" />
           </Button>
-          <div className="flex items-center gap-2 font-semibold">
-            <img src="/logo.png" alt="Bismillah" className="h-8" />
+
+          <Link href="/" className="flex items-center gap-2 font-semibold" aria-label="Go to home">
+            <Image src="/logo.png" alt="Bismillah" width={32} height={32} className="h-8 w-8" />
             <span className="sr-only">Bismillah</span>
-          </div>
+          </Link>
+
           <div className="ml-auto flex items-center gap-3">
-            <Button variant="ghost" size="icon" aria-label="Cart">
+            <Button variant="ghost" size="icon" aria-label="Cart" type="button">
               <ShoppingCart className="h-5 w-5" />
             </Button>
           </div>
@@ -44,7 +48,7 @@ export default function GroceryQRCodeLanding() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <Input className="pl-9 h-11 rounded-xl" placeholder="Search products..." />
           </div>
-          <Button className="h-11 rounded-xl">Go</Button>
+          <Button className="h-11 rounded-xl" type="button">Go</Button>
         </div>
       </section>
 
@@ -52,9 +56,15 @@ export default function GroceryQRCodeLanding() {
       <section className="mx-auto max-w-7xl px-4 py-6">
         <h2 className="text-lg font-semibold mb-3">Shop by Category</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          <a href="/c/fruits-veg" className="rounded-xl border p-4 hover:shadow-sm">Fruits & Veggies</a>
-          <a href="/c/dairy-eggs" className="rounded-xl border p-4 hover:shadow-sm">Dairy & Eggs</a>
-          <a href="/c/snacks" className="rounded-xl border p-4 hover:shadow-sm">Snacks</a>
+          <Link href="/c/fruits-veg" className="rounded-xl border p-4 hover:shadow-sm text-center">
+            Fruits &amp; Veggies
+          </Link>
+          <Link href="/c/dairy-eggs" className="rounded-xl border p-4 hover:shadow-sm text-center">
+            Dairy &amp; Eggs
+          </Link>
+          <Link href="/c/snacks" className="rounded-xl border p-4 hover:shadow-sm text-center">
+            Snacks
+          </Link>
         </div>
       </section>
 
@@ -72,7 +82,7 @@ export default function GroceryQRCodeLanding() {
               </CardHeader>
               <CardContent className="flex justify-between items-center">
                 <span className="font-bold">${p.price.toFixed(2)}</span>
-                <Button size="sm" className="rounded-xl">Add</Button>
+                <Button size="sm" className="rounded-xl" type="button">Add</Button>
               </CardContent>
             </Card>
           ))}
@@ -84,8 +94,8 @@ export default function GroceryQRCodeLanding() {
         <div className="mx-auto max-w-7xl px-4 py-6 text-xs text-slate-500 flex justify-between">
           <div>© {new Date().getFullYear()} Bismillah</div>
           <div className="flex gap-4">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
           </div>
         </div>
       </footer>
